@@ -9342,3 +9342,6 @@ html.fd-phone .fd-frame {
   border-radius: 0 !important;
   box-shadow: none !important;
 }
+.noClick{
+  pointer-events: none;
+}
