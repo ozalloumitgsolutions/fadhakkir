@@ -8656,8 +8656,9 @@ body {
 }
 .fd-ps-sheet .fd-184 svg, .fd-ps-sheet .fd-184 svg path { fill: #FFFFFF; }
 .fd-ps-sheet .fd-183 > span:last-child { border-color: rgba(255,255,255,0.7) !important; }
-.fd-ps-sheet .fd-183 > span:last-child:has(.fd-186:not([style*="transparent"])) { border-color: #2FD08D !important; }
-.fd-ps-sheet .fd-186:not([style*="transparent"]) { background: #2FD08D !important; }
+.fd-ps-sheet .fd-183 > span:last-child[data-selected="true"] { border-color: #2FD08D !important; }
+.fd-ps-sheet .fd-186 { background: transparent !important; }
+.fd-ps-sheet .fd-186[data-selected="true"] { background: #2FD08D !important; }
 /* الزرّان */
 .fd-ps-sheet .fd-188 { background: #0AA569 !important; box-shadow: none !important; }
 .fd-ps-sheet .fd-190 {
@@ -8669,7 +8670,6 @@ body {
 .fd-ps-sheet .fd-183 {border-bottom: 1px solid rgba(255,255,255,0.3);}
 .fd-ps-sheet .fd-184 { width: 24px !important; height: 24px !important; }
 .fd-ps-sheet .fd-184 svg { width: 10px; height: 10px; }
-.fd-ps-sheet .fd-186[style*="transparent"] { background: rgba(255,255,255,0.6) !important; }
 
 /* ══════════ اتجاه القبلة — الطابع الداكن ══════════ */
 [data-screen-label="اتجاه القبلة"] {

@@ -1248,6 +1248,7 @@ window.MuznApp = function (DCLogic, React) {
       const curSnd = pk ? ((s.prayerSounds && s.prayerSounds[pk]) || 0) : -1;
       const pSoundRows = sounds.map((n, i) => ({
         name: n, bg: curSnd === i ? T.hint : "transparent",
+        selected: curSnd === i,
         ring: curSnd === i ? T.green : T.faint, dot: curSnd === i ? T.green : "transparent",
         pick: () => { if (!pk) return; this.set({ prayerSounds: { ...s.prayerSounds, [pk]: i } }); this.showToast(t("جارٍ تشغيل عيّنة: ", "Playing sample: ") + n); },
       }));

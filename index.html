@@ -1317,9 +1317,9 @@
                     </svg>
                   </div>
                   <span class="fd-185" style="color:{{ T.text }}">{{ r.name }}</span>
-                  <span
+                  <span data-selected="{{ r.selected }}"
                     style="width:20px; height:20px; border-radius:50%; border:2px solid {{ r.ring }}; display:flex; justify-content:center; align-items:center;"><span
-                      class="fd-186" style="background:{{ r.dot }}"></span></span>
+                      class="fd-186" data-selected="{{ r.selected }}" style="background:{{ r.dot }}"></span></span>
                 </div>
               </sc-for>
               <div class="fd-187">
@@ -3679,9 +3679,9 @@
                     </svg>
                   </div>
                   <span class="fd-185" style="color:{{ T.text }}">{{ r.name }}</span>
-                  <span
+                  <span data-selected="{{ r.selected }}"
                     style="width:20px; height:20px; border-radius:50%; border:2px solid {{ r.ring }}; display:flex; justify-content:center; align-items:center;"><span
-                      class="fd-186" style="background:{{ r.dot }}"></span></span>
+                      class="fd-186" data-selected="{{ r.selected }}" style="background:{{ r.dot }}"></span></span>
                 </div>
               </sc-for>
               <div sc-camel-on-click="{{ closePrayerSheet }}" class="fd-627">
