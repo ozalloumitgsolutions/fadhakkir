@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.89 23.29">
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g>
+        <line x1="3.46" y1="11.25" x2=".17" y2="11.25" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+        <rect x=".17" y="10.55" width="3.29" height="1.4" rx=".7" ry=".7" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+      </g>
+      <g>
+        <line x1="10.95" y1="4.31" x2="10.95" y2=".17" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+        <rect x="10.25" y=".17" width="1.4" height="4.14" rx=".7" ry=".7" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+      </g>
+      <g>
+        <line x1="5.69" y1="6.33" x2="3.2" y2="3.83" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+        <rect x="3.74" y="3.32" width="1.4" height="3.53" rx=".7" ry=".7" transform="translate(-2.29 4.63) rotate(-45)" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+      </g>
+      <g>
+        <line x1="15.78" y1="6.33" x2="18.54" y2="3.57" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+        <rect x="15.21" y="4.25" width="3.9" height="1.4" rx=".7" ry=".7" transform="translate(1.53 13.58) rotate(-45)" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+      </g>
+      <g>
+        <line x1="21.72" y1="11.25" x2="18.43" y2="11.25" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+        <rect x="18.43" y="10.55" width="3.29" height="1.4" rx=".7" ry=".7" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+      </g>
+      <path d="M5.05,11.89c0-3.25,2.64-5.89,5.89-5.89s5.89,2.64,5.89,5.89" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+      <g>
+        <line x1="10.95" y1="19.15" x2="10.95" y2="23.29" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+        <path d="M10.95,19.15h0c.39,0,.7,.26,.7,.59v2.3c0,.33-.31,.59-.7,.59h0c-.39,0-.7-.26-.7-.59v-2.3c0-.33,.31-.59,.7-.59Z" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+      </g>
+      <g>
+        <line x1="16.2" y1="17.14" x2="18.7" y2="19.63" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+        <rect x="16.75" y="16.62" width="1.4" height="3.53" rx=".7" ry=".7" transform="translate(-7.89 17.72) rotate(-45)" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+      </g>
+      <g>
+        <line x1="6.12" y1="17.14" x2="3.36" y2="19.9" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+        <rect x="2.78" y="17.82" width="3.9" height="1.4" rx=".7" ry=".7" transform="translate(-11.71 8.77) rotate(-45)" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+      </g>
+      <path d="M16.84,11.89c0,3.25-2.64,5.89-5.89,5.89s-5.89-2.64-5.89-5.89" fill="#e7c47e" stroke="#f7de72" stroke-miterlimit="10" stroke-width=".34"/>
+    </g>
+  </g>
+</svg>
