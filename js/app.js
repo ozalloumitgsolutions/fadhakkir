@@ -40,7 +40,7 @@ window.MuznApp = function (DCLogic, React) {
       // الرزنامة
       calOffset: 0, calSel: null, calMode: "greg",
       // الصلاة
-      alertModes: { fajr: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 }, nightAlert: false, qiyamHour: 3, qiyamDrop: false, sunriseAlert: true,
+      alertModes: { fajr: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 }, nightAlert: true, qiyamHour: 0, qiyamMinute: 58, qiyamDropField: null, sunriseAlert: true,
       prayerSounds: { fajr: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 }, prayerSheet: null, athanSound: 0,
       // الختمة
       planDays: 30, planStart: 0,
@@ -101,7 +101,7 @@ window.MuznApp = function (DCLogic, React) {
         wirdDone: s.wirdDone, adhkarDone: s.adhkarDone, khatmahPages: s.khatmahPages,
         athanPref: s.athanPref, asrMethod: s.asrMethod, highLat: s.highLat, cityName: s.cityName, heroMosque: s.heroMosque,
         alertModes: s.alertModes, nightAlert: s.nightAlert, athanSound: s.athanSound,
-        prayerSounds: s.prayerSounds, sunriseAlert: s.sunriseAlert, qiyamHour: s.qiyamHour,
+        prayerSounds: s.prayerSounds, sunriseAlert: s.sunriseAlert, qiyamHour: s.qiyamHour, qiyamMinute: s.qiyamMinute,
         savedAyahs: s.savedAyahs, downloads: s.downloads,
         reciter: s.reciter, tafsirBook: s.tafsirBook, savedHadiths: s.savedHadiths, readerIdx: s.readerIdx, bookmarkIdx: s.bookmarkIdx, mushafTipSeen: s.mushafTipSeen, bmRibbon: s.bmRibbon,
         planDays: s.planDays, planStart: s.planStart, hadithSel: s.hadithSel, darkMode: s.darkMode,
@@ -627,7 +627,7 @@ window.MuznApp = function (DCLogic, React) {
         calGregBtn: t("التقويم الميلادي", "Gregorian Calendar"),
         calNote: t("انقر على أي يوم لعرض مقابله الهجري والميلادي · تقويم أم القرى", "Tap any day to see its Hijri & Gregorian date · Umm al-Qura calendar"),
         prayerTimes: t("مواقيت الصلاة", "Prayer Times"),
-        nightTitle: t("تنبيه قيام الليل", "Night Prayer Alert"),
+        nightTitle: t("قيام الليل", "Night prayer"),
         nightSub: t("تذكير قبل الفجر بساعة ونصف — الثلث الأخير", "Reminder 1.5h before Fajr — the last third"),
         athanSoundT: t("صوت الأذان", "Athan Sound"),
         sheetTitle: t("اختيار صوت الأذان", "Choose Athan Sound"),
@@ -711,7 +711,13 @@ window.MuznApp = function (DCLogic, React) {
         muezzinPick: t("صوت المؤذن", "Muezzin Voice"),
         sunriseAlertT: t("تنبيه شروق الشمس", "Sunrise Alert"),
         sunriseAlertSub: t("بصوت المؤذن — «الصلاة خير من النوم»", "Muezzin voice — “Prayer is better than sleep”"),
-        qiyamSub: t("اختر ساعة التنبيه في الثلث الأخير", "Pick the alert hour in the last third"),
+        qiyamSub: t("اختر ساعة التنبيه", "Choose an alert time"),
+        qiyamHadith: t("قال رسول الله ﷺ في صلاة داود عليه السلام: «كان ينام نصف الليل، ويقوم ثلثه، وينام سدسه». رواه البخاري ومسلم.", "The Prophet ﷺ said about the prayer of Dawud: “He would sleep half the night, pray for one third of it, then sleep for one sixth.” Narrated by al-Bukhari and Muslim."),
+        qiyamInfo: t("يُحسب الليل من غروب الشمس إلى طلوع الفجر، ويُستحب قيام الثلث الأخير من الليل أيضًا.", "The night is counted from sunset until dawn; praying in its last third is especially recommended."),
+        qiyamTimeLabel: t("اختر وقت التنبيه:", "Choose alert time:"),
+        qiyamHourLabel: t("ساعة التنبيه", "Alert hour"),
+        qiyamMinuteLabel: t("دقيقة التنبيه", "Alert minute"),
+        qiyamPeriodLabel: t("فترة التنبيه", "Alert period"),
         dlTab: t("المنزّلة", "Downloads"),
         amTafsirL: t("تفسير الآية", "Tafsir of the ayah"),
         amListenL: t("الاستماع", "Listen"),
@@ -1129,22 +1135,42 @@ window.MuznApp = function (DCLogic, React) {
       const en = s.lang === "en";
       const t = (a, b) => en ? b : a;
       const hLbl = h => ((h === 0 ? 12 : h) + ":00 ") + (en ? "AM" : "ص");
-      const qiyamLabels = [0, 1, 2, 3, 4].map(h => t("الساعة " + hLbl(h), hLbl(h)));
-      const qiyamRows = [0, 1, 2, 3, 4].map(h => ({
-        name: qiyamLabels[h],
-        bg: s.qiyamHour === h ? "rgba(255,255,255,0.12)" : "transparent",
-        selected: s.qiyamHour === h,
-        pick: () => {
-          this.set({ qiyamHour: h, qiyamDrop: false });
-          this.showToast(t("تنبيه قيام الليل: ", "Qiyam alert: ") + hLbl(h));
-        },
+      const qiyamHours = Array.from({ length: 12 }, (_, i) => ({ value: i + 1, label: String(i + 1) }));
+      const qiyamMinutes = Array.from({ length: 60 }, (_, i) => ({ value: i, label: String(i).padStart(2, "0") }));
+      const qiyamHour24 = Number.isFinite(Number(s.qiyamHour)) ? ((Number(s.qiyamHour) % 24) + 24) % 24 : 0;
+      const qiyamMinute = Number.isFinite(Number(s.qiyamMinute)) ? Math.max(0, Math.min(59, Number(s.qiyamMinute))) : 58;
+      const qiyamHour12 = qiyamHour24 % 12 || 12;
+      const qiyamPeriod = qiyamHour24 >= 12 ? 1 : 0;
+      const qiyamPeriodOptions = [
+        { value: 0, label: t("ص", "AM") },
+        { value: 1, label: t("م", "PM") },
+      ];
+      const toggleQiyamDrop = field => this.setState({ qiyamDropField: s.qiyamDropField === field ? null : field });
+      const setQiyamHour = value => this.set({ qiyamHour: (value % 12) + (qiyamHour24 >= 12 ? 12 : 0), qiyamDropField: null });
+      const setQiyamMinute = value => this.set({ qiyamMinute: value, qiyamDropField: null });
+      const setQiyamPeriod = value => this.set({ qiyamHour: (qiyamHour24 % 12) + (value ? 12 : 0), qiyamDropField: null });
+      const qiyamHourRows = qiyamHours.map(q => ({
+        ...q, selected: q.value === qiyamHour12, pick: () => setQiyamHour(q.value),
+      }));
+      const qiyamMinuteRows = qiyamMinutes.map(q => ({
+        ...q, selected: q.value === qiyamMinute, pick: () => setQiyamMinute(q.value),
+      }));
+      const qiyamPeriodRows = qiyamPeriodOptions.map(q => ({
+        ...q, selected: q.value === qiyamPeriod, pick: () => setQiyamPeriod(q.value),
       }));
       if (!mod) return {
         goManualLoc: () => this.go("locationManual"), timesRows: [], monthRows: [], pSoundRows: [],
-        qiyamRows, qiyamValueLabel: qiyamLabels[s.qiyamHour] || qiyamLabels[3],
-        qiyamDropOpen: !!s.qiyamDrop, toggleQiyamDrop: () => this.setState({ qiyamDrop: !s.qiyamDrop }),
+        qiyamHour12, qiyamMinute, qiyamPeriod, qiyamPeriodLabel: qiyamPeriodOptions[qiyamPeriod].label,
+        qiyamHourRows, qiyamMinuteRows, qiyamPeriodRows,
+        qiyamHourOpen: s.qiyamDropField === "hour",
+        qiyamMinuteOpen: s.qiyamDropField === "minute",
+        qiyamPeriodOpen: s.qiyamDropField === "period",
+        toggleQiyamHour: () => toggleQiyamDrop("hour"),
+        toggleQiyamMinute: () => toggleQiyamDrop("minute"),
+        toggleQiyamPeriod: () => toggleQiyamDrop("period"),
         pSheetSty: "display:none", pScrimSty: "display:none", cityName: s.cityName, monthTitle: "",
-        pSheetTitle: "", pSheetSub: "", pIsFajr: false, pIsIsha: false, nightOn: false, closePrayerSheet: () => {},
+        pSheetTitle: "", pSheetSub: "", pIsFajr: false, pIsIsha: false, nightOn: false,
+        closePrayerSheet: () => this.setState({ prayerSheet: null, qiyamDropField: null }),
       };
       const PT = this.times();
       const st = mod.getPrayerState(s.now, PT);
@@ -1230,7 +1256,7 @@ window.MuznApp = function (DCLogic, React) {
         timesRows, monthRows, monthTitle,
         goManualLoc: () => this.go("locationManual"),
         goMonthTable: () => this.go("monthTable"),
-        toggleNight: () => { this.set({ nightAlert: !s.nightAlert, qiyamDrop: false }); this.showToast(!s.nightAlert ? t("تم تفعيل تنبيه قيام الليل", "Night prayer alert enabled") : t("تم إيقاف تنبيه قيام الليل", "Night prayer alert disabled")); },
+        toggleNight: () => { this.set({ nightAlert: !s.nightAlert, qiyamDropField: null }); this.showToast(!s.nightAlert ? t("تم تفعيل تنبيه قيام الليل", "Night prayer alert enabled") : t("تم إيقاف تنبيه قيام الليل", "Night prayer alert disabled")); },
         nightBg: s.nightAlert ? "#0AA569" : "rgba(255, 255, 255, 0.14)",
         nightBor: s.nightAlert ? "transparent" : "rgba(255, 255, 255, 0.28)",
         qiyamJustify: (s.nightAlert !== en) ? "flex-start" : "flex-end",
@@ -1245,9 +1271,15 @@ window.MuznApp = function (DCLogic, React) {
         pSheetIconSrc: pMeta ? this.prayerIconSrc()[pMeta.key] : "",
         pSheetSub: pMeta ? t("التنبيه وصوت المؤذّن", "Alert & muezzin voice") : "",
         pSoundRows,
-        qiyamRows, qiyamValueLabel: qiyamLabels[s.qiyamHour] || qiyamLabels[3],
-        qiyamDropOpen: !!s.qiyamDrop, toggleQiyamDrop: () => this.setState({ qiyamDrop: !s.qiyamDrop }),
-        closePrayerSheet: () => this.setState({ prayerSheet: null, qiyamDrop: false }),
+        qiyamHour12, qiyamMinute, qiyamPeriod, qiyamPeriodLabel: qiyamPeriodOptions[qiyamPeriod].label,
+        qiyamHourRows, qiyamMinuteRows, qiyamPeriodRows,
+        qiyamHourOpen: s.qiyamDropField === "hour",
+        qiyamMinuteOpen: s.qiyamDropField === "minute",
+        qiyamPeriodOpen: s.qiyamDropField === "period",
+        toggleQiyamHour: () => toggleQiyamDrop("hour"),
+        toggleQiyamMinute: () => toggleQiyamDrop("minute"),
+        toggleQiyamPeriod: () => toggleQiyamDrop("period"),
+        closePrayerSheet: () => this.setState({ prayerSheet: null, qiyamDropField: null }),
         pScrimSty: "position:absolute; inset:0; background:rgba(19,35,33," + (pOpen ? "0.45" : "0") + "); z-index:44; transition:background .3s; pointer-events:" + (pOpen ? "auto" : "none"),
         pSheetSty: "position:absolute; left:0; right:0; bottom:0; z-index:45; background:" + T.sheet + "; border-radius:24px 24px 0 0; padding:5px 20px 26px; max-height:76%; overflow-y:auto; display:flex; flex-direction:column; box-shadow:0 -10px 40px rgba(0,0,0,0.18); transform:translateY(" + (pOpen ? "0" : "108%") + "); transition:transform .35s cubic-bezier(.2,.8,.2,1)",
       };

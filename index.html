@@ -1238,24 +1238,69 @@
                     </div>
                   </div>
                   <sc-if value="{{ nightOn }}" hint-placeholder-val="{{ false }}">
-                    <div class="fd-qiyam-select-wrap">
-                      <div dir="{{ dirA }}" role="button" tabindex="0" sc-camel-on-click="{{ toggleQiyamDrop }}"
-                        class="fd-qiyam-trigger">
-                        <span>{{ qiyamValueLabel }}</span>
-                        <svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFFFFF"
-                          stroke-width="2">
-                          <path d="M6 9 L12 15 L18 9"></path>
-                        </svg>
+                    <div class="fd-qiyam-copy" style="color:{{ T.srcText }}">
+                      <span>{{ X.qiyamHadith }}</span>
+                      <span>{{ X.qiyamInfo }}</span>
+                    </div>
+                    <div class="fd-qiyam-time-row" dir="{{ dirA }}">
+                      <span class="fd-qiyam-time-label">{{ X.qiyamTimeLabel }}</span>
+                      <div class="fd-qiyam-controls" dir="ltr">
+                      <div class="fd-qiyam-time-field fd-qiyam-hour-field">
+                        <button type="button" class="fd-qiyam-time-trigger" aria-label="{{ X.qiyamHourLabel }}"
+                          aria-haspopup="listbox" aria-expanded="{{ qiyamHourOpen }}"
+                          sc-camel-on-click="{{ toggleQiyamHour }}">
+                          <span>{{ qiyamHour12 }}</span>
+                          <svg width="9" height="9" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFFFFF"
+                            stroke-width="2"><path d="M6 9 L12 15 L18 9"></path></svg>
+                        </button>
+                        <sc-if value="{{ qiyamHourOpen }}">
+                          <div class="fd-qiyam-time-options" role="listbox" style="background:{{ T.card }}">
+                            <sc-for list="{{ qiyamHourRows }}" as="q" hint-placeholder-count="12">
+                              <button type="button" role="option" aria-selected="{{ q.selected }}"
+                                data-selected="{{ q.selected }}" class="fd-qiyam-time-option"
+                                sc-camel-on-click="{{ q.pick }}">{{ q.label }}</button>
+                            </sc-for>
+                          </div>
+                        </sc-if>
                       </div>
-                      <sc-if value="{{ qiyamDropOpen }}" hint-placeholder-val="{{ false }}">
-                        <div class="fd-qiyam-options" style="background:{{ T.card }}">
-                          <sc-for list="{{ qiyamRows }}" as="q" hint-placeholder-count="5">
-                            <div dir="{{ dirA }}" role="button" tabindex="0" sc-camel-on-click="{{ q.pick }}"
-                              class="fd-qiyam-option" data-selected="{{ q.selected }}"
-                              >{{ q.name }}</div>
-                          </sc-for>
-                        </div>
-                      </sc-if>
+                      <span class="fd-qiyam-time-separator">:</span>
+                      <div class="fd-qiyam-time-field fd-qiyam-minute-field">
+                        <button type="button" class="fd-qiyam-time-trigger" aria-label="{{ X.qiyamMinuteLabel }}"
+                          aria-haspopup="listbox" aria-expanded="{{ qiyamMinuteOpen }}"
+                          sc-camel-on-click="{{ toggleQiyamMinute }}">
+                          <span>{{ qiyamMinute }}</span>
+                          <svg width="9" height="9" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFFFFF"
+                            stroke-width="2"><path d="M6 9 L12 15 L18 9"></path></svg>
+                        </button>
+                        <sc-if value="{{ qiyamMinuteOpen }}">
+                          <div class="fd-qiyam-time-options" role="listbox" style="background:{{ T.card }}">
+                            <sc-for list="{{ qiyamMinuteRows }}" as="q" hint-placeholder-count="60">
+                              <button type="button" role="option" aria-selected="{{ q.selected }}"
+                                data-selected="{{ q.selected }}" class="fd-qiyam-time-option"
+                                sc-camel-on-click="{{ q.pick }}">{{ q.label }}</button>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                      </div>
+                      <div class="fd-qiyam-time-field fd-qiyam-period-field">
+                        <button type="button" class="fd-qiyam-time-trigger" aria-label="{{ X.qiyamPeriodLabel }}"
+                          aria-haspopup="listbox" aria-expanded="{{ qiyamPeriodOpen }}"
+                          sc-camel-on-click="{{ toggleQiyamPeriod }}">
+                          <span>{{ qiyamPeriodLabel }}</span>
+                          <svg width="9" height="9" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFFFFF"
+                            stroke-width="2"><path d="M6 9 L12 15 L18 9"></path></svg>
+                        </button>
+                        <sc-if value="{{ qiyamPeriodOpen }}">
+                          <div class="fd-qiyam-time-options" role="listbox" style="background:{{ T.card }}">
+                            <sc-for list="{{ qiyamPeriodRows }}" as="q" hint-placeholder-count="2">
+                              <button type="button" role="option" aria-selected="{{ q.selected }}"
+                                data-selected="{{ q.selected }}" class="fd-qiyam-time-option"
+                                sc-camel-on-click="{{ q.pick }}">{{ q.label }}</button>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </div>
                     </div>
                   </sc-if>
                 </div>
@@ -3555,24 +3600,69 @@
                     </div>
                   </div>
                   <sc-if value="{{ nightOn }}" hint-placeholder-val="{{ false }}">
-                    <div class="fd-qiyam-select-wrap">
-                      <div dir="{{ dirA }}" role="button" tabindex="0" sc-camel-on-click="{{ toggleQiyamDrop }}"
-                        class="fd-qiyam-trigger">
-                        <span>{{ qiyamValueLabel }}</span>
-                        <svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFFFFF"
-                          stroke-width="2">
-                          <path d="M6 9 L12 15 L18 9"></path>
-                        </svg>
+                    <div class="fd-qiyam-copy" style="color:{{ T.srcText }}">
+                      <span>{{ X.qiyamHadith }}</span>
+                      <span>{{ X.qiyamInfo }}</span>
+                    </div>
+                    <div class="fd-qiyam-time-row" dir="{{ dirA }}">
+                      <span class="fd-qiyam-time-label">{{ X.qiyamTimeLabel }}</span>
+                      <div class="fd-qiyam-controls" dir="ltr">
+                      <div class="fd-qiyam-time-field fd-qiyam-hour-field">
+                        <button type="button" class="fd-qiyam-time-trigger" aria-label="{{ X.qiyamHourLabel }}"
+                          aria-haspopup="listbox" aria-expanded="{{ qiyamHourOpen }}"
+                          sc-camel-on-click="{{ toggleQiyamHour }}">
+                          <span>{{ qiyamHour12 }}</span>
+                          <svg width="9" height="9" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFFFFF"
+                            stroke-width="2"><path d="M6 9 L12 15 L18 9"></path></svg>
+                        </button>
+                        <sc-if value="{{ qiyamHourOpen }}">
+                          <div class="fd-qiyam-time-options" role="listbox" style="background:{{ T.card }}">
+                            <sc-for list="{{ qiyamHourRows }}" as="q" hint-placeholder-count="12">
+                              <button type="button" role="option" aria-selected="{{ q.selected }}"
+                                data-selected="{{ q.selected }}" class="fd-qiyam-time-option"
+                                sc-camel-on-click="{{ q.pick }}">{{ q.label }}</button>
+                            </sc-for>
+                          </div>
+                        </sc-if>
                       </div>
-                      <sc-if value="{{ qiyamDropOpen }}" hint-placeholder-val="{{ false }}">
-                        <div class="fd-qiyam-options" style="background:{{ T.card }}">
-                          <sc-for list="{{ qiyamRows }}" as="q" hint-placeholder-count="5">
-                            <div dir="{{ dirA }}" role="button" tabindex="0" sc-camel-on-click="{{ q.pick }}"
-                              class="fd-qiyam-option" data-selected="{{ q.selected }}"
-                              style="background:{{ q.bg }}">{{ q.name }}</div>
-                          </sc-for>
-                        </div>
-                      </sc-if>
+                      <span class="fd-qiyam-time-separator">:</span>
+                      <div class="fd-qiyam-time-field fd-qiyam-minute-field">
+                        <button type="button" class="fd-qiyam-time-trigger" aria-label="{{ X.qiyamMinuteLabel }}"
+                          aria-haspopup="listbox" aria-expanded="{{ qiyamMinuteOpen }}"
+                          sc-camel-on-click="{{ toggleQiyamMinute }}">
+                          <span>{{ qiyamMinute }}</span>
+                          <svg width="9" height="9" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFFFFF"
+                            stroke-width="2"><path d="M6 9 L12 15 L18 9"></path></svg>
+                        </button>
+                        <sc-if value="{{ qiyamMinuteOpen }}">
+                          <div class="fd-qiyam-time-options" role="listbox" style="background:{{ T.card }}">
+                            <sc-for list="{{ qiyamMinuteRows }}" as="q" hint-placeholder-count="60">
+                              <button type="button" role="option" aria-selected="{{ q.selected }}"
+                                data-selected="{{ q.selected }}" class="fd-qiyam-time-option"
+                                sc-camel-on-click="{{ q.pick }}">{{ q.label }}</button>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                      </div>
+                      <div class="fd-qiyam-time-field fd-qiyam-period-field">
+                        <button type="button" class="fd-qiyam-time-trigger" aria-label="{{ X.qiyamPeriodLabel }}"
+                          aria-haspopup="listbox" aria-expanded="{{ qiyamPeriodOpen }}"
+                          sc-camel-on-click="{{ toggleQiyamPeriod }}">
+                          <span>{{ qiyamPeriodLabel }}</span>
+                          <svg width="9" height="9" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFFFFF"
+                            stroke-width="2"><path d="M6 9 L12 15 L18 9"></path></svg>
+                        </button>
+                        <sc-if value="{{ qiyamPeriodOpen }}">
+                          <div class="fd-qiyam-time-options" role="listbox" style="background:{{ T.card }}">
+                            <sc-for list="{{ qiyamPeriodRows }}" as="q" hint-placeholder-count="2">
+                              <button type="button" role="option" aria-selected="{{ q.selected }}"
+                                data-selected="{{ q.selected }}" class="fd-qiyam-time-option"
+                                sc-camel-on-click="{{ q.pick }}">{{ q.label }}</button>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </div>
                     </div>
                   </sc-if>
                 </div>

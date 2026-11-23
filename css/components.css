@@ -1540,76 +1540,118 @@
   gap: 12px;
 }
 
-.fd-qiyam-select-wrap {
-  position: relative;
-  /* width: 92%; */
-  z-index: 5;
-}
-
-.fd-qiyam-trigger {
-  /* width: 100%; */
-  min-height: 26px;
-  padding: 4px 11px;
-  border: 1px solid rgba(255,255,255,0.9);
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  color: #FFFFFF;
-  font-family: 'Majalla', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.fd-qiyam-options {
-  position: absolute;
-  top: calc(100% + -4px);
-  right: 0;
-  left: 0;
-  z-index: 6;
-  max-height: 160px;
-  overflow-y: auto;
-  padding: 3px;
-  border: 1.5px solid rgba(255,255,255,0.95);
-  border-radius: 18px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.28);
-  /* width: 100%; */
-  /* display: block; */
+.fd-qiyam-copy {
   display: flex;
   flex-direction: column;
-  inset-inline-start: 0;
-  inset-inline-end: 0;
+  gap: 3px;
+  font-size: 14px;
+  line-height: 1.45;
 }
 
-.fd-qiyam-option {
-  min-height: 26px;
-  padding: 3px 9px;
-  border-radius: 12px;
+.fd-qiyam-time-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.fd-qiyam-time-label {
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.fd-qiyam-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.fd-qiyam-time-separator {
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.fd-qiyam-time-field {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 23px;
+  z-index: 8;
+}
+
+.fd-qiyam-time-trigger {
+  height: 23px;
+  padding: 0 7px 0 15px;
+  border: 1px solid rgba(255,255,255,0.75);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
   color: #FFFFFF;
   font-family: 'Majalla', sans-serif;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
-  text-align: right;
+  line-height: 1;
+  text-align: center;
   cursor: pointer;
-  transition: background .15s ease;
-  /* width: 100%; */
-  border: 1px solid transparent;
-  border-radius: 20px;
-  transition: background .2s, border-color .2s, box-shadow .2s;
-  margin-bottom: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-.fd-qiyam-option:hover {
-  background: rgba(255,255,255,0.16) !important;
+.fd-qiyam-hour-field .fd-qiyam-time-trigger { width: 43px; }
+.fd-qiyam-minute-field .fd-qiyam-time-trigger { width: 45px; }
+.fd-qiyam-period-field .fd-qiyam-time-trigger { width: 42px; }
+
+.fd-qiyam-time-field svg {
+  position: absolute;
+  inset-inline-start: 6px;
+  pointer-events: none;
 }
 
-.fd-qiyam-option[data-selected="true"] {
-  border: 1px solid #ffffff !important;
-  border-radius: 20px;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8), inset 0 0 4px rgba(255, 255, 255, 0.2);
+.fd-qiyam-time-options {
+  position: absolute;
+  top: calc(100% + 3px);
+  inset-inline-start: 0;
+  z-index: 20;
+  max-height: 160px;
+  min-width: 100%;
+  overflow-y: auto;
+  padding: 2px;
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.28);
+}
+
+.fd-qiyam-time-option {
+  display: block;
+  width: 100%;
+  min-height: 23px;
+  padding: 2px 6px;
+  border: 0;
+  background: transparent;
+  color: #FFFFFF;
+  font-family: 'Majalla', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  cursor: pointer;
+}
+
+.fd-qiyam-time-option[data-selected="true"] {
+  background: #2FD08D !important;
+  color: #FFFFFF !important;
+  outline: none;
+}
+
+.fd-qiyam-time-trigger:focus-visible,
+.fd-qiyam-time-option:focus-visible {
+  outline: 2px solid #2FD08D;
+  outline-offset: 2px;
 }
 
 /* ورقة إعدادات كل صلاة — ×2 */
@@ -8597,6 +8639,7 @@ body {
 .fd-ps-sheet .fd-90, .fd-ps-sheet .fd-176,
 .fd-ps-sheet .fd-182, .fd-ps-sheet .fd-185 { color: #FFFFFF !important; }
 .fd-ps-sheet .fd-176, .fd-ps-sheet .fd-174 { opacity: .85; }
+.fd-ps-sheet .fd-qiyam-copy { color: #FFFFFF !important; opacity: .9; }
 .fd-ps-sheet .fd-175, .fd-ps-sheet .fd-178 {
   background: rgba(255,255,255,0.08) !important;
   border: 1px solid rgba(255,255,255,0.35) !important;
