@@ -6293,7 +6293,7 @@
 
 .fd-st-card {
   background: #FFFFFF;
-  border-radius: 14px;
+  border-radius: 20px;
   border: 1px solid #E8EDF2;
   padding: 14px;
   margin-bottom: 18px;
@@ -6419,7 +6419,7 @@
 /* عن التطبيق */
 .fd-st-about {
   background: #FFFFFF;
-  border-radius: 14px;
+  border-radius: 20px;
   border: 1px solid #E8EDF2;
   padding: 12px 14px;
   display: flex;
@@ -8473,6 +8473,19 @@ body {
   border-radius: 21px;
   box-shadow: none;
   padding: 12px 20px;
+}
+.fd-mushaf-screen .fd-224 .fd-225 { height: 30px; }
+.fd-mushaf-screen .fd-224 .fd-226 {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+.fd-mushaf-screen .fd-224 .fd-225 svg {
+  width: 26px !important;
+  height: 26px !important;
+}
+.fd-mushaf-screen .fd-224 .fd-225 svg *:not([stroke="none"]) {
+  stroke-width: 2.2px !important;
 }
 .fd-mushaf-screen .fd-225 svg,
 .fd-mushaf-screen .fd-225 svg path,
