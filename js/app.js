@@ -316,7 +316,7 @@ window.MuznApp = function (DCLogic, React) {
         ["home", "quran", "prayer", "adhkar", "more"].forEach(k => {
           const on = active === k;
           navItem[k] = itemBase + " justify-content:center; gap:3px; height:52px; border-radius:25px;"
-            + (on ? " background:#0AA569; box-shadow:0 6px 16px rgba(0,0,0,0.25);" : "");
+            + (on ? " background:#0AA569; border:1px solid #27FFAC; box-shadow:none;" : "");
           navBtn[k] = btnOff;
           navC[k] = "#FFFFFF";
           navSz[k] = 22;
